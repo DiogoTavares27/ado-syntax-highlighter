@@ -2,8 +2,10 @@
 DIST_DIR := dist
 CHROME_BUILD := $(DIST_DIR)/chrome_build
 FIREFOX_BUILD := $(DIST_DIR)/firefox_build
+EDGE_BUILD := $(DIST_DIR)/edge_build
 CHROME_ZIP := $(DIST_DIR)/chrome-extension.zip
 FIREFOX_ZIP := $(DIST_DIR)/firefox-extension.zip
+EDGE_ZIP := $(DIST_DIR)/edge-extension.zip
 
 # --- Source Files ---
 COMMON_FILES := \
@@ -19,8 +21,8 @@ COMMON_DIRS := \
 	assets
 
 # --- Primary Targets ---
-all: chrome firefox
-package: package-chrome package-firefox
+all: chrome firefox edge
+package: package-chrome package-firefox package-edge
 
 clean:
 	@echo "Cleaning..."
@@ -60,6 +62,9 @@ chrome:
 firefox:
 	$(call build-extension,$(FIREFOX_BUILD),manifest.firefox.json)
 
+edge:
+	$(call build-extension,$(EDGE_BUILD),manifest.edge.json)
+
 # --- Package (Zip) Targets ---
 package-chrome: chrome
 	@echo "Zipping Chrome..."
@@ -71,4 +76,9 @@ package-firefox: firefox
 	@rm -f $(FIREFOX_ZIP)
 	@cd $(FIREFOX_BUILD) && zip -r ../$(notdir $(FIREFOX_ZIP)) . -x "*.DS_Store"
 
-.PHONY: all package clean chrome firefox package-chrome package-firefox
+package-edge: edge
+	@echo "Zipping Edge..."
+	@rm -f $(EDGE_ZIP)
+	@cd $(EDGE_BUILD) && zip -r ../$(notdir $(EDGE_ZIP)) . -x "*.DS_Store"
+
+.PHONY: all package clean chrome firefox edge package-chrome package-firefox package-edge

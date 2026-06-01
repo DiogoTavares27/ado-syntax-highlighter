@@ -11,7 +11,7 @@ A browser extension that brings syntax highlighting to file diffs in Azure DevOp
 - **Language Detection:** Detects the programming language based on file extensions.
 - **Theme Support:** Seamlessly integrates with both light and dark themes in Azure DevOps.
 - **Powered by Prism:** Utilizes the popular [Prism](https://prismjs.com/) library for fast and accurate highlighting.
-- **Cross-Browser Support:** Available for both Chrome and Firefox.
+- **Cross-Browser Support:** Available for Chrome, Firefox, and Microsoft Edge.
 - **Custom Domains Support**: Works with self-hosted (on-premise) and other custom Azure DevOps domains via a simple configuration page.
 - **Custom File Type Mapping:** Map specific file patterns (e.g., `*.myext`, `myfile.ext`) to a syntax highlighting language of your choice.
 
@@ -63,6 +63,16 @@ A browser extension that brings syntax highlighting to file diffs in Azure DevOp
 
 **Note:** This is a temporary add-on and will need to be reloaded every time you restart Firefox.
 
+### Microsoft Edge
+
+#### From Source (Manual)
+
+1.  Clone this repository and run `make edge` (or `make` to build all targets).
+2.  Open Microsoft Edge and navigate to `edge://extensions`.
+3.  Enable **Developer mode** (toggle in the bottom-left corner).
+4.  Click **Load unpacked**.
+5.  Select the `dist/edge_build` folder.
+
 ## Usage
 
 Once installed, the extension will automatically apply syntax highlighting to files in any Azure DevOps pull request you view. There are no additional steps required.
@@ -100,8 +110,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ### Building from Source
 
 1.  Clone this repository.
-2.  Run `make package`. This will build and zip both extensions into the `/dist` directory.
-3.  You can then load the unpacked build directories (`dist/chrome_build` and `dist/firefox_build`) into your browser for testing.
+2.  Run `make package`. This will build and zip all extensions into the `/dist` directory.
+3.  You can then load the unpacked build directories (`dist/chrome_build`, `dist/firefox_build`, or `dist/edge_build`) into your browser for testing.
 
 ## License
 
